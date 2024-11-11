@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     private static final Scanner scanner = new Scanner(System.in);
+    static CurrencyConverter converter = new CurrencyConverter();
 
     public static void main(String[] args){
         boolean repeat = true;
@@ -13,6 +14,8 @@ public class Main {
             showMenu();
 
             int exchange = scanner.nextInt();
+
+
             chooseConverter(exchange);
 
             System.out.println("Do you want to convert again? (y/n)");
@@ -26,23 +29,24 @@ public class Main {
 
     private static void showMenu(){
         System.out.println("Choose one of the following options to convert:");
-        System.out.println("1. CHF to Euro");
-        System.out.println("2. Euro to CHF ");
-        System.out.println("3. CHF to USD");
+        System.out.println("1. EUR to GPD");
+        System.out.println("2. GPD to USD");
+        System.out.println("3. USD to GPD");
     }
 
-    private static void chooseConverter(int exchange){
-        switch(exchange){
+    private static void chooseConverter(int exchangeType){
+
+        switch(exchangeType){
             case 1:{
-                convertCHFtoEuro();
+                converter.convertEURToGPD();
                 break;
             }
             case 2:{
-                convertEURtoCHF();
+                converter.convertGPDToUSD();
                 break;
             }
             case 3:{
-                convertCHFtoUSD();
+                converter.convertUSDToEUR();
                 break;
             }
             default:{
@@ -52,35 +56,5 @@ public class Main {
         }
     }
 
-    private static void convertCHFtoEuro(){
-        System.out.println("Enter a number for CHF:");
-        float chf = scanner.nextFloat();
-        if(chf>=0){
-            System.out.println(chf+ " CHF is " + chf*1.04 + " EURO");
-        } else {
-            System.out.println("Please enter positive numbers for CHF!");
-        }
-    }
-
-
-    private static void convertEURtoCHF(){
-        System.out.println("Enter a number for EUR:");
-        float usd = scanner.nextFloat();
-        if(usd>=0){
-            System.out.println(usd + " EUR is " + usd * 1.11 + " CHF");
-        } else {
-            System.out.println("Please enter positive numbers for EUR!");
-        }
-    }
-
-    private static void convertCHFtoUSD(){
-        System.out.println("Enter a number for CHF:");
-        float chf = scanner.nextFloat();
-        if(chf>=0){
-            System.out.println(chf + " CHF is " + chf * 1.11 + " USD");
-        } else {
-            System.out.println("Please enter positive numbers for CHF!");
-        }
-    }
 }
 
